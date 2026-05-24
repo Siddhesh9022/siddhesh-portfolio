@@ -96,9 +96,10 @@ export async function processContactSubmission(
     return { status: 200, body: { ok: true, message: 'Message sent successfully' } };
   } catch (err) {
     console.error('Contact form error:', err);
-    return {
-      status: 500,
-      body: { error: 'Failed to send message. Please try again or email directly.' },
-    };
+    const message =
+      err instanceof Error && err.message === 'SMTP is not configured'
+        ? 'Server email is not configured. Add SMTP environment variables in Vercel.'
+        : 'Failed to send message. Please try again or email directly.';
+    return { status: 500, body: { error: message } };
   }
 }

@@ -174,7 +174,9 @@ After pushing to GitHub, Vercel redeploys automatically if the project is connec
 
 ### Contact form (SMTP)
 
-The contact form posts to `/api/contact` (Vercel serverless function). Configure these **Environment Variables** in the Vercel project dashboard (Settings → Environment Variables):
+The contact form posts to `/api/contact` on the **same domain** (e.g. `https://your-site.vercel.app/api/contact`). This is correct for production — not a bug.
+
+**Required:** Add these **Environment Variables** in Vercel → Project → **Settings → Environment Variables** (Production, Preview, and Development). Then **Redeploy** — env vars do not apply to past deployments.
 
 | Variable | Example |
 |----------|---------|
@@ -191,7 +193,7 @@ Local testing (one port — same as production path `/api/contact`):
 2. Run from repo root: `npm run dev` — or `cd portfolio && npm run dev`
 3. Open **http://localhost:5173** — the contact form and UI share this port.
 
-Production on Vercel uses the same `/api/contact` URL via `api/contact.ts`; both use shared logic in `lib/contactEmail.ts`.
+Production on Vercel uses the same `/api/contact` URL via `api/contact.ts`; both use shared logic in `api/lib/contactEmail.ts`.
 
 ---
 

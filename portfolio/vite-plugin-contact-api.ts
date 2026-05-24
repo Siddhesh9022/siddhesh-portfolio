@@ -1,6 +1,6 @@
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import type { Plugin } from 'vite';
-import { processContactSubmission } from '../lib/contactEmail';
+import { processContactSubmission } from '../api/lib/contactEmail';
 
 function readJsonBody(req: IncomingMessage): Promise<unknown> {
   return new Promise((resolvePromise, reject) => {

@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { processContactSubmission, type ContactPayload } from '../lib/contactEmail.js';
+import { processContactSubmission, type ContactPayload } from './lib/contactEmail.js';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   res.setHeader('Content-Type', 'application/json');
