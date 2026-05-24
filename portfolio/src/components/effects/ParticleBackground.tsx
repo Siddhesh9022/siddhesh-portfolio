@@ -54,8 +54,8 @@ export const ParticleBackground: React.FC = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const isMobile = window.matchMedia('(max-width: 767px)').matches;
-    rgbRef.current = getPrimaryRgb();
+    // const isMobile = window.matchMedia('(max-width: 767px)').matches;
+    // rgbRef.current = getPrimaryRgb();
 
     const resizeCanvas = () => {
       const parent = canvas.parentElement;
