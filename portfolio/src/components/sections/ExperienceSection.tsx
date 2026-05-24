@@ -15,7 +15,7 @@ export const ExperienceSection: React.FC = () => {
   return (
     <section
       id="experience"
-      className="py-24"
+      className="py-16 sm:py-20 md:py-24 scroll-mt-20"
       style={{ backgroundColor: 'var(--color-surface)' }}
     >
       <Container>
@@ -28,7 +28,7 @@ export const ExperienceSection: React.FC = () => {
             Experience
           </SectionTitle>
           <p className="mt-4 text-lg max-w-2xl mx-auto text-[var(--color-text-muted)]">
-            My professional journey as a frontend developer.
+            Professional full-stack development building scalable enterprise applications.
           </p>
         </div>
 
@@ -40,6 +40,7 @@ export const ExperienceSection: React.FC = () => {
               role={exp.role}
               organization={exp.organization}
               duration={exp.duration}
+              location={exp.location}
               description={exp.description}
               techStack={exp.techStack}
             />

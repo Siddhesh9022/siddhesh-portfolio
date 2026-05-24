@@ -1,9 +1,9 @@
 /**
- * ContactForm - Working contact form with validation
- * Uses Formspree for form submission (free tier)
+ * ContactForm - Portfolio contact form (sends via /api/contact on Vercel)
  */
 import React, { useState } from 'react';
 import { PrimaryButton } from './PrimaryButton';
+import { contactData } from '../../data/portfolioData';
 
 interface FormData {
   name: string;
@@ -19,6 +19,9 @@ interface FormErrors {
   message?: string;
 }
 
+const CONTACT_API =
+  import.meta.env.VITE_CONTACT_API_URL?.trim() || '/api/contact';
+
 export const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
     name: '',
@@ -30,6 +33,7 @@ export const ContactForm: React.FC = () => {
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -61,46 +65,51 @@ export const ContactForm: React.FC = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    // Clear error when user starts typing
     if (errors[name as keyof FormErrors]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
+    if (submitStatus === 'error') {
+      setSubmitStatus('idle');
+      setErrorMessage('');
+    }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!validateForm()) return;
 
     setIsSubmitting(true);
     setSubmitStatus('idle');
+    setErrorMessage('');
+
+    const gotcha =
+      (e.currentTarget.querySelector('input[name="_gotcha"]') as HTMLInputElement)?.value ?? '';
 
     try {
-      // Using Formspree - replace with your actual form ID
-      // Sign up at https://formspree.io for free
-      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+      const response = await fetch(CONTACT_API, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formData, _gotcha: gotcha }),
       });
+
+      const data = (await response.json().catch(() => ({}))) as {
+        error?: string;
+        message?: string;
+      };
 
       if (response.ok) {
         setSubmitStatus('success');
         setFormData({ name: '', email: '', subject: '', message: '' });
       } else {
         setSubmitStatus('error');
+        setErrorMessage(data.error || 'Something went wrong. Please try again.');
       }
     } catch {
-      // Fallback to mailto if Formspree fails
-      const mailtoLink = `mailto:siddheshp103@gmail.com?subject=${encodeURIComponent(
-        formData.subject
-      )}&body=${encodeURIComponent(
-        `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
-      )}`;
-      window.location.href = mailtoLink;
-      setSubmitStatus('success');
+      setSubmitStatus('error');
+      setErrorMessage(
+        'Could not reach the server. Use email directly or try again after redeploying with SMTP env vars.'
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -120,15 +129,28 @@ export const ContactForm: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6 w-full max-w-lg">
+      {/* Honeypot — hidden from users, blocks bots */}
+      <input
+        type="text"
+        name="_gotcha"
+        tabIndex={-1}
+        autoComplete="off"
+        className="hidden"
+        aria-hidden
+      />
+
       {submitStatus === 'success' && (
         <div className="p-4 rounded-lg bg-green-500/10 border border-green-500/20 text-green-600">
-          Thank you! Your message has been sent successfully. I'll get back to you soon.
+          Thank you! Your message has been sent successfully. I&apos;ll get back to you soon.
         </div>
       )}
 
       {submitStatus === 'error' && (
         <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/20 text-red-600">
-          Something went wrong. Please try again or email me directly at siddheshp103@gmail.com
+          {errorMessage}{' '}
+          <a href={`mailto:${contactData.email}`} className="underline font-medium">
+            Email me directly
+          </a>
         </div>
       )}
 
@@ -196,17 +218,17 @@ export const ContactForm: React.FC = () => {
         {errors.message && <p className="mt-1 text-sm text-red-500">{errors.message}</p>}
       </div>
 
-      <PrimaryButton type="submit" className="w-full" disabled={isSubmitting}>
+      <PrimaryButton type="submit" className="w-full min-h-[44px]" disabled={isSubmitting}>
         {isSubmitting ? 'Sending...' : 'Send Message'}
       </PrimaryButton>
 
       <p className="text-sm text-[var(--color-text-muted)] text-center">
         Or email me directly at{' '}
         <a
-          href="mailto:siddheshp103@gmail.com"
+          href={`mailto:${contactData.email}`}
           className="text-[var(--color-primary)] hover:underline"
         >
-          siddheshp103@gmail.com
+          {contactData.email}
         </a>
       </p>
     </form>

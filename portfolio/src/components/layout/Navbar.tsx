@@ -37,23 +37,32 @@ export const Navbar: React.FC = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'backdrop-blur-md shadow-lg' : ''
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
+        isScrolled
+          ? 'backdrop-blur-md shadow-md border-[var(--color-border)]'
+          : 'border-transparent shadow-none'
       }`}
-      style={{
-        backgroundColor: isScrolled ? 'var(--color-background)' : 'transparent',
-        opacity: isScrolled ? 0.95 : 1,
-      }}
+      style={{ backgroundColor: 'var(--color-background)' }}
     >
       <Container>
         <nav className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <a
             href="#home"
-            className="text-xl md:text-2xl font-bold tracking-tight"
-            style={{ color: 'var(--color-primary)' }}
+            className="flex flex-col leading-tight min-w-0 max-w-[55vw] sm:max-w-none"
           >
-            Portfolio
+            <span
+              className="text-base sm:text-lg md:text-xl font-bold tracking-tight truncate"
+              style={{ color: 'var(--color-primary)' }}
+            >
+              {navigationData.brandName}
+            </span>
+            <span
+              className="hidden sm:block text-xs md:text-sm font-medium truncate"
+              style={{ color: 'var(--color-text-muted)' }}
+            >
+              {navigationData.brandSubtitle}
+            </span>
           </a>
 
           {/* Desktop Navigation */}

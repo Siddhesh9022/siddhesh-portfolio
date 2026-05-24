@@ -9,10 +9,13 @@ import type { ProjectStatusType } from '../components/ui/ProjectCard';
 // ============================================
 export const personalInfo = {
   name: 'Siddhesh Patil',
-  role: 'Full Stack Developer & Data Scientist',
+  role: 'Software Developer',
+  niche: 'Full Stack',
   greeting: 'Hello, I\'m',
-  shortIntro: 'Full Stack Developer with expertise in React, Python/FastAPI, and Data Science. Building scalable web applications and implementing real-time data solutions with Kafka, Docker, and Linux deployment.',
-  description: 'Passionate developer with hands-on experience in modern web technologies, data science, and AI/ML. Proficient in React ecosystem, Python backend development with FastAPI, and real-time data processing using Apache Kafka. Strong expertise in Docker containerization and Linux deployment workflows.',
+  shortIntro:
+    'Full Stack Software Developer building modern web applications end to end — from responsive React frontends to robust Python/FastAPI backends, databases, and production deployments.',
+  description:
+    'Passionate about clean code, scalable architecture, and shipping reliable products. Comfortable across the stack with React, TypeScript, Python, SQL, Docker, and Linux.',
   location: 'Mumbai, India',
   email: 'siddheshp103@gmail.com',
   phone: '+91 9022855395',
@@ -22,10 +25,10 @@ export const personalInfo = {
 // SOCIAL LINKS
 // ============================================
 export const socialLinks = {
-  github: 'https://github.com/siddhesh',
-  linkedin: 'https://linkedin.com/in/siddhesh',
-  leetcode: 'https://leetcode.com/siddhesh',
-  portfolio: 'https://siddhesh.dev',
+  github: 'https://github.com/Siddhesh9022',
+  linkedin: 'https://www.linkedin.com/in/siddhesh-patil-795161226',
+  leetcode: 'https://leetcode.com/u/_Siddhesh_patil_05/',
+  portfolio: 'https://siddhesh-portfolio-ashy.vercel.app/',
 };
 
 // ============================================
@@ -35,7 +38,13 @@ export const heroData = {
   greeting: personalInfo.greeting,
   name: personalInfo.name,
   role: personalInfo.role,
+  niche: personalInfo.niche,
   intro: personalInfo.shortIntro,
+  profileLinks: [
+    { label: 'GitHub', href: socialLinks.github },
+    { label: 'LinkedIn', href: socialLinks.linkedin },
+  ],
+  highlightTags: ['React', 'TypeScript', 'FastAPI', 'MySQL', 'Tailwind CSS'],
   ctaButtons: {
     primary: {
       label: 'View My Work',
@@ -46,7 +55,8 @@ export const heroData = {
       href: '#contact',
     },
   },
-  videoUrl: '/hero-video.mp4', // Placeholder - user can replace with actual video
+  resumeUrl: '/Siddhesh_Patil_Resume.pdf',
+  videoUrl: '/hero-video.mp4',
 };
 
 // ============================================
@@ -56,33 +66,32 @@ export interface ExperienceData {
   role: string;
   organization: string;
   duration: string;
+  location?: string;
   description: string[];
   techStack: string[];
 }
 
 export const experienceData: ExperienceData[] = [
   {
-    role: 'Junior Software Developer',
-    organization: 'ENVECON GLOBAL PVT LTD',
-    duration: 'Aug 2025 - Present (6 months)',
+    role: 'Software Developer',
+    organization: 'Envecon',
+    location: 'Mumbai, India',
+    duration: 'Aug 2025 – Present',
     description: [
-      'Developed and maintained full-stack applications using React and Python/FastAPI',
-      'Implemented Apache Kafka for real-time data streaming and event-driven architecture',
-      'Designed and optimized MySQL database schemas for enterprise applications',
-      'Deployed applications using Docker and Linux for production environments',
+      'Centrify — Built an in-house Jira-style agile platform for projects, backlogs, sprints, user stories, tasks, epics, and bugs with JWT auth and role-based access; used by 200+ active users in production.',
+      'Supply Chain Management (SCM) — Delivered supplier onboarding, inventory and parts management with serial tracking, multi-site warehouse management, and PR/RFQ workflows with hierarchical approval chains using Apache Kafka.',
+      'Fleet Management — Developed transport order management with real-time broadcasting, driver assignment, and Geapify Routing API integration for vehicle-size-aware route planning in an event-driven architecture.',
     ],
-    techStack: ['React', 'Python', 'FastAPI', 'MySQL', 'Apache Kafka', 'Docker', 'Linux'],
-  },
-  {
-    role: 'Intern',
-    organization: 'IBM Skills-Build and CSRBOX-AIML',
-    duration: 'Internship',
-    description: [
-      'Developed a Water Sanitation Chatbot as part of an AI for social good project',
-      'Implemented NLP to enable the chatbot to understand user queries and provide real-time responses',
-      'Integrated IBM Watson services to enhance the bot\'s data analysis and response capabilities',
+    techStack: [
+      'React',
+      'TanStack Query',
+      'TypeScript',
+      'FastAPI',
+      'MySQL',
+      'Apache Kafka',
+      'Docker',
+      'Linux',
     ],
-    techStack: ['IBM Watson', 'Python', 'NLP', 'AI/ML', 'Chatbot Development'],
   },
 ];
 
@@ -101,29 +110,67 @@ export interface ProjectData {
 
 export const projectsData: ProjectData[] = [
   {
-    id: '1',
+    id: 'centrify',
+    title: 'Centrify — Agile Project Management Platform',
+    description:
+      'In-house Jira-style platform for day-to-day planning and delivery: projects, backlogs, sprints, user stories, tasks, epics, bugs, collaboration, and a personal dashboard. Secure JWT authentication, role-based access, dark/light theme, and 200+ active production users.',
+    techStack: [
+      'React 19',
+      'TypeScript',
+      'Vite',
+      'TanStack Query',
+      'React Router',
+      'FastAPI',
+      'SQLAlchemy',
+      'MySQL',
+      'JWT',
+    ],
+    status: 'completed',
+    githubUrl: 'https://github.com/Siddhesh9022/Centrify-',
+  },
+  {
+    id: 'e-contracts',
+    title: 'E-Contracts — Business Operations & Job Management',
+    description:
+      '3-module role-based application for Business, Contractor, and Workforce with separate dashboards and access control. Quotation bidding for large orders, direct contractor assignment for smaller jobs, contract tracking, workforce allocation, and automated PDF generation with ReportLab.',
+    techStack: [
+      'React',
+      'TypeScript',
+      'TanStack',
+      'FastAPI',
+      'MySQL',
+      'Tailwind CSS',
+      'DaisyUI',
+      'ReportLab',
+    ],
+    status: 'in-progress',
+    githubUrl: 'https://github.com/Siddhesh9022/E-Contracts_UI',
+  },
+  {
+    id: 'trackify',
+    title: 'Trackify — Personal Money Tracker',
+    description:
+      'Full-stack finance app for daily expenses, monthly income, bank balances, cash on hand, and savings (including SIPs). Calendar-style expense grid, multi-bank accounts, monthly summaries, CSV export, and email OTP verification.',
+    techStack: ['React', 'Vite', 'FastAPI', 'SQLAlchemy', 'MySQL', 'JWT', 'Tailwind CSS'],
+    status: 'completed',
+    githubUrl: 'https://github.com/Siddhesh9022/Trackify',
+  },
+  {
+    id: 'trackify-android',
+    title: 'Trackify Mobile — Flutter App',
+    description:
+      'Flutter client for the Trackify API: expenses, income, banks, savings/SIPs, and JWT session management. Thin mobile client using Provider, Dio, and shared_preferences — pairs with the Trackify FastAPI backend.',
+    techStack: ['Flutter', 'Dart', 'Provider', 'Dio', 'Material Design 3'],
+    status: 'completed',
+    githubUrl: 'https://github.com/Siddhesh9022/Trackify-Android-Application',
+  },
+  {
+    id: 'facial-recognition',
     title: 'Facial Recognition Attendance System',
-    description: 'Engineered a real-time facial recognition system using Haar Cascade and LBPH, achieving 95%+ accuracy. Designed a custom desktop GUI using Tkinter with OpenCV for image processing, Pandas for data handling, and NumPy for numerical computations. Added pyttsx3-based speech feedback for accessibility.',
+    description:
+      'Real-time facial recognition pipeline with 95%+ accuracy using Haar Cascade and LBPH. Tkinter desktop GUI with admin/user access, OpenCV image processing, and pyttsx3 speech feedback for accessibility.',
     techStack: ['Python', 'OpenCV', 'Haar Cascade', 'LBPH', 'Tkinter', 'Pandas', 'NumPy', 'pyttsx3'],
     status: 'completed',
-    githubUrl: 'https://github.com/siddhesh/facial-recognition-attendance',
-  },
-  {
-    id: '2',
-    title: 'E-commerce Website',
-    description: 'Built a full-stack e-commerce web application using Next.js, React, Tailwind CSS, Node.js, and MongoDB. Implemented features like product filtering, search functionality, cart management, and order tracking with secure user authentication and dynamic product listings.',
-    techStack: ['Next.js', 'React', 'Tailwind CSS', 'Node.js', 'MongoDB', 'Express'],
-    status: 'completed',
-    githubUrl: 'https://github.com/siddhesh/ecommerce',
-    liveUrl: 'https://ecommerce-demo.vercel.app',
-  },
-  {
-    id: '3',
-    title: 'Path Following Robo Car',
-    description: 'Built an IoT system using Arduino with smooth hardware-software integration. Implemented Dijkstra\'s algorithm for efficient pathfinding in complex scenarios. Used L298N motor driver module to interface with DC motors for speed and direction control.',
-    techStack: ['Arduino', 'IoT', 'C++', 'L298N Motor Driver', 'Dijkstra Algorithm'],
-    status: 'completed',
-    githubUrl: 'https://github.com/siddhesh/path-following-robo-car',
   },
 ];
 
@@ -137,32 +184,63 @@ export interface SkillCategory {
 
 export const skillsData: SkillCategory[] = [
   {
-    category: 'Frontend Development',
-    skills: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'HTML5', 'CSS3', 'Redux'],
+    category: 'Languages',
+    skills: ['Python', 'JavaScript (ES6+)', 'TypeScript', 'SQL', 'C++'],
   },
   {
-    category: 'Backend Development',
-    skills: ['Python', 'FastAPI', 'Node.js', 'Express', 'REST APIs', 'GraphQL'],
+    category: 'Frameworks & Libraries',
+    skills: [
+      'React',
+      'TanStack Query',
+      'TanStack Router',
+      'Node.js',
+      'Tailwind CSS',
+      'FastAPI',
+      'SQLAlchemy',
+      'Pydantic',
+      'Tkinter',
+      'ReportLab',
+    ],
   },
   {
     category: 'Databases',
-    skills: ['MySQL', 'PostgreSQL', 'Redis'],
+    skills: ['MySQL', 'MongoDB', 'PostgreSQL', 'SQLite'],
   },
   {
-    category: 'Data Science & AI/ML',
-    skills: ['Pandas', 'NumPy', 'Scikit-learn', 'TensorFlow', 'Data Analysis', 'Machine Learning'],
+    category: 'Infra & DevOps',
+    skills: ['Apache Kafka', 'Docker', 'Linux', 'Git', 'GitHub'],
   },
   {
-    category: 'Data Streaming',
-    skills: ['Apache Kafka', 'Real-time Data Processing', 'Event-driven Architecture'],
+    category: 'Data Analysis',
+    skills: [
+      'Pandas',
+      'NumPy',
+      'Data Cleaning',
+      'EDA',
+      'Matplotlib',
+      'Seaborn',
+    ],
+  },
+];
+
+// ============================================
+// EDUCATION & CERTIFICATIONS
+// ============================================
+export const educationData = {
+  institution: 'Vasantdada Patil College of Engineering',
+  degree: 'Bachelor of Engineering in Information Technology',
+  location: 'Mumbai',
+  duration: 'Aug 2021 – Jun 2025',
+};
+
+export const certificationsData = [
+  {
+    name: 'Artificial Intelligence & Machine Learning',
+    issuer: 'IBM SkillsBuild',
   },
   {
-    category: 'DevOps & Deployment',
-    skills: ['Docker', 'Linux', 'CI/CD', 'Git', 'GitHub', 'Vercel'],
-  },
-  {
-    category: 'Tools',
-    skills: ['Git', 'GitHub', 'VS Code', 'Postman', 'Jupyter Notebook'],
+    name: 'AIML Certification',
+    issuer: 'CSRBOX',
   },
 ];
 
@@ -171,18 +249,20 @@ export const skillsData: SkillCategory[] = [
 // ============================================
 export const aboutData = {
   title: 'About Me',
-  subtitle: 'Passionate about building scalable solutions with modern technologies',
+  subtitle: 'Building production software for real teams',
   paragraphs: [
-    'I am a Full Stack Developer with strong expertise in React and Python/FastAPI. I enjoy building responsive, performant web applications and RESTful APIs. My practical experience includes developing complete applications from frontend to backend deployment.',
-    'My journey extends into Data Science and AI/ML where I leverage Python libraries like Pandas, NumPy, and Scikit-learn for data analysis and building intelligent systems. I have hands-on experience with Apache Kafka for real-time data streaming and event-driven architectures.',
-    'I am proficient in DevOps practices including Docker containerization and Linux server management. My professional experience includes working extensively with Git/GitHub in collaborative team environments for version control and deployment workflows.',
+    'I am a Software Developer at Envecon in Mumbai, shipping full-stack products used by hundreds of users every day. I work across React and TanStack on the frontend and Python/FastAPI with MySQL on the backend.',
+    'My recent work includes Centrify (agile project management), an SCM platform with Kafka-driven approval workflows, and a fleet management system with real-time routing. I also build personal projects like Trackify and E-Contracts end to end.',
+    'I hold a B.E. in Information Technology from Vasantdada Patil College of Engineering and certifications in AI/ML from IBM SkillsBuild and CSRBOX. I am comfortable with Docker, Linux deployment, and collaborative Git workflows.',
   ],
   stats: [
-    { label: 'Projects Completed', value: '10+' },
-    { label: 'Technologies', value: '20+' },
-    { label: 'Git Contributions', value: 'Active' },
+    { label: 'Production Users', value: '200+' },
+    { label: 'Core Stack', value: 'React + FastAPI' },
+    { label: 'Education', value: 'B.E. IT' },
     { label: 'Location', value: 'Mumbai' },
   ],
+  education: educationData,
+  certifications: certificationsData,
 };
 
 // ============================================
@@ -191,7 +271,8 @@ export const aboutData = {
 export const contactData = {
   title: 'Get In Touch',
   subtitle: 'Let\'s work together',
-  description: 'I\'m always open to discussing new opportunities, innovative projects, or collaboration ideas. Feel free to reach out!',
+  description:
+    'Open to discussing new opportunities, collaborations, or interesting projects. Reach out via email or connect on GitHub and LinkedIn.',
   email: personalInfo.email,
   phone: personalInfo.phone,
   location: personalInfo.location,
@@ -207,6 +288,8 @@ export const contactData = {
 // NAVIGATION DATA
 // ============================================
 export const navigationData = {
+  brandName: personalInfo.name,
+  brandSubtitle: `${personalInfo.niche} ${personalInfo.role}`,
   links: [
     { label: 'Home', href: '#home' },
     { label: 'Projects', href: '#projects' },
@@ -222,7 +305,7 @@ export const navigationData = {
 // ============================================
 export const footerData = {
   copyright: `© ${new Date().getFullYear()} ${personalInfo.name}. All rights reserved.`,
-  tagline: 'Building software that makes a difference.',
+  tagline: 'Building software that ships to production.',
   socials: [
     { label: 'GitHub', href: socialLinks.github },
     { label: 'LinkedIn', href: socialLinks.linkedin },

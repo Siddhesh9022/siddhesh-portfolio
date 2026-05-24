@@ -172,6 +172,27 @@ Because the Vite project lives in the `portfolio/` subdirectory, the repo root i
 
 After pushing to GitHub, Vercel redeploys automatically if the project is connected.
 
+### Contact form (SMTP)
+
+The contact form posts to `/api/contact` (Vercel serverless function). Configure these **Environment Variables** in the Vercel project dashboard (Settings → Environment Variables):
+
+| Variable | Example |
+|----------|---------|
+| `SMTP_HOST` | `smtp.gmail.com` |
+| `SMTP_PORT` | `587` |
+| `SMTP_USERNAME` | `siddheshp103@gmail.com` |
+| `SMTP_PASSWORD` | Gmail [App Password](https://myaccount.google.com/apppasswords) (no spaces) |
+| `FROM_EMAIL` | `siddheshp103@gmail.com` |
+| `CONTACT_TO_EMAIL` | `siddheshp103@gmail.com` (inbox that receives submissions) |
+
+Local testing (one port — same as production path `/api/contact`):
+
+1. Copy `.env.example` to `.env` or `.env.local` at the **repo root** (SMTP credentials).
+2. Run from repo root: `npm run dev` — or `cd portfolio && npm run dev`
+3. Open **http://localhost:5173** — the contact form and UI share this port.
+
+Production on Vercel uses the same `/api/contact` URL via `api/contact.ts`; both use shared logic in `lib/contactEmail.ts`.
+
 ---
 
 ## Author

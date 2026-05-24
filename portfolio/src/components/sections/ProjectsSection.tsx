@@ -15,7 +15,7 @@ export const ProjectsSection: React.FC = () => {
   return (
     <section
       id="projects"
-      className="py-24 bg-[var(--color-background)]"
+      className="py-16 sm:py-20 md:py-24 bg-[var(--color-background)] scroll-mt-20"
     >
       <Container>
         {/* Header */}
@@ -36,7 +36,7 @@ export const ProjectsSection: React.FC = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {projectsData.map((project) => (
             <ProjectCard
               key={project.id}

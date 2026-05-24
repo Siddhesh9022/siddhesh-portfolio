@@ -13,6 +13,7 @@ interface ExperienceItemProps {
   role: string;
   organization: string;
   duration: string;
+  location?: string;
   description: string[];
   techStack: string[];
   className?: string;
@@ -25,6 +26,7 @@ export const ExperienceItem: React.FC<ExperienceItemProps> = ({
   role,
   organization,
   duration,
+  location,
   description,
   techStack,
   className = '',
@@ -50,6 +52,12 @@ export const ExperienceItem: React.FC<ExperienceItemProps> = ({
           <span style={{ color: 'var(--color-text-muted)' }}>
             {duration}
           </span>
+          {location && (
+            <>
+              <span style={{ color: 'var(--color-text-muted)' }}>•</span>
+              <span style={{ color: 'var(--color-text-muted)' }}>{location}</span>
+            </>
+          )}
         </div>
       </div>
 

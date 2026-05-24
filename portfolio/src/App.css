@@ -1,1 +1,69 @@
 @import "tailwindcss";
+
+/* Hero entrance — runs once on load, does not fade on scroll */
+@keyframes hero-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-fade-in {
+  animation: hero-fade-in 0.55s ease-out forwards;
+}
+
+.hero-fade-in-delay-1 {
+  animation-delay: 0.08s;
+  opacity: 0;
+}
+
+.hero-fade-in-delay-2 {
+  animation-delay: 0.16s;
+  opacity: 0;
+}
+
+.hero-fade-in-delay-3 {
+  animation-delay: 0.24s;
+  opacity: 0;
+}
+
+.hero-fade-in-delay-4 {
+  animation-delay: 0.32s;
+  opacity: 0;
+}
+
+.hero-fade-in-delay-5 {
+  animation-delay: 0.4s;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-fade-in,
+  .hero-fade-in-delay-1,
+  .hero-fade-in-delay-2,
+  .hero-fade-in-delay-3,
+  .hero-fade-in-delay-4,
+  .hero-fade-in-delay-5 {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Prevent horizontal overflow on small screens */
+html,
+body {
+  overflow-x: hidden;
+}
+
+/* Safer tap targets on touch devices */
+@media (pointer: coarse) {
+  a,
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+}

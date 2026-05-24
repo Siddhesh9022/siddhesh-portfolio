@@ -16,7 +16,7 @@ export const AboutSection: React.FC = () => {
   return (
     <section
       id="about"
-      className="py-24"
+      className="py-16 sm:py-20 md:py-24 scroll-mt-20"
       style={{ backgroundColor: 'var(--color-surface)' }}
     >
       <Container>
@@ -39,6 +39,29 @@ export const AboutSection: React.FC = () => {
                   {paragraph}
                 </TextBlock>
               ))}
+            </div>
+
+            <div className="mt-10 space-y-6">
+              <div>
+                <h3 className="text-lg font-semibold text-[var(--color-text)] mb-2">Education</h3>
+                <p className="text-[var(--color-text)] font-medium">{aboutData.education.degree}</p>
+                <p className="text-[var(--color-text-muted)] text-sm">
+                  {aboutData.education.institution} · {aboutData.education.location}
+                </p>
+                <p className="text-[var(--color-text-muted)] text-sm">{aboutData.education.duration}</p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-[var(--color-text)] mb-2">Certifications</h3>
+                <ul className="space-y-2">
+                  {aboutData.certifications.map((cert) => (
+                    <li key={cert.name} className="text-sm text-[var(--color-text-muted)]">
+                      <span className="text-[var(--color-text)]">{cert.name}</span>
+                      {' — '}
+                      {cert.issuer}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
 

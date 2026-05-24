@@ -17,7 +17,7 @@ export const ContactSection: React.FC = () => {
   return (
     <section
       id="contact"
-      className="py-24"
+      className="py-16 sm:py-20 md:py-24 scroll-mt-20"
       style={{ backgroundColor: 'var(--color-background)' }}
     >
       <Container>
@@ -44,7 +44,7 @@ export const ContactSection: React.FC = () => {
           {/* Left Side - Contact Info Cards */}
           <FadeInOnScroll delay={100} direction="right">
             <div className="space-y-6">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* Email */}
                 <Card className="text-center p-6">
                   <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 bg-[var(--color-surface)]">

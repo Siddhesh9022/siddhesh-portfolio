@@ -16,7 +16,7 @@ export const SkillsSection: React.FC = () => {
   return (
     <section
       id="skills"
-      className="py-24"
+      className="py-16 sm:py-20 md:py-24 scroll-mt-20"
       style={{ backgroundColor: 'var(--color-background)' }}
     >
       <Container>
